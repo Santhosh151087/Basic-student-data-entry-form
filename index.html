@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Student Form</title>
+</head>
+<body>
+  <center><h1>STUDENT FORM</h1></center>
+
+  <center>
+    <form id="studentForm">
+      <table border="1">
+        <tr>
+          <td>Name</td>
+          <td><input id="name" placeholder="Enter your Name" required></td>
+        </tr>
+        <tr>
+          <td>Age</td>
+          <td><input id="age" type="number" placeholder="Enter your age" required></td>
+        </tr>
+        <tr>
+          <td>Gender</td>
+          <td>
+            <input type="radio" id="male" name="gender" value="Male" required>
+            <label for="male">Male</label>
+            <input type="radio" id="female" name="gender" value="Female">
+            <label for="female">Female</label>
+          </td>
+        </tr>
+        <tr>
+          <td>Course</td>
+          <td>
+            <select id="course" required>
+              <option value="">SELECT</option>
+              <option>AIDS</option>
+              <option>CSE</option>
+              <option>IT</option>
+              <option>CYBER SECURITY</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>E-mail</td>
+          <td><input id="email" type="email" placeholder="Enter your E-mail" required></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><button type="button" onclick="saved()">SAVE</button></td>
+        </tr>
+      </table>
+    </form>
+  </center>
+
+  <hr>
+
+  <center>
+    <table id="details" border="1">
+      <tr>
+        <th>NAME</th>
+        <th>AGE</th>
+        <th>COURSE</th>
+        <th>GENDER</th>
+        <th>E-mail</th>
+        <th>ACTION</th>
+      </tr>
+    </table>
+  </center>
+
+  <script>
+    function saved() {
+      const name = document.getElementById("name").value;
+      const age = document.getElementById("age").value;
+      const email = document.getElementById("email").value;
+      const course = document.getElementById("course").value;
+      const genderInput = document.querySelector('input[name="gender"]:checked');
+      const gender = genderInput ? genderInput.value : "";
+
+      if (!name || !age || !email || !course || !gender) {
+        alert("Please fill out all fields.");
+        return;
+      }
+
+      const table = document.getElementById("details");
+      const row = table.insertRow();
+
+      row.insertCell(0).textContent = name;
+      row.insertCell(1).textContent = age;
+      row.insertCell(2).textContent = course;
+      row.insertCell(3).textContent = gender;
+      row.insertCell(4).textContent = email;
+
+      
+      const actionCell = row.insertCell(5);
+      const delBtn = document.createElement("button");
+      delBtn.textContent = "DELETE";
+      delBtn.onclick = function () {
+        table.deleteRow(row.rowIndex);
+      };
+      actionCell.appendChild(delBtn);
+
+      
+      document.getElementById("studentForm").reset();
+    }
+  </script>
+</body>
+</html>
