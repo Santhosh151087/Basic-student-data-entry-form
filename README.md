@@ -26,5 +26,5 @@ This is a simple web-based project to collect and display student information su
 - Improve UI/UX with better styling.
 
 ---
-
+LINK for my project:https://santhosh151087.github.io/Basic-student-data-entry-form/
 Created by Santhosh
